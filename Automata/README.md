@@ -1,6 +1,6 @@
 ## Automata (WIP)
 
-This project is a work-in-progress plugin for the Obsidian note-taking appilcation. It currently allows task creation using "natural language processing" in many ways that Todoist (my previous task management tool) just doesn't allow.
+This project is a work-in-progress plugin for the [Obsidian](https://obsidian.md/) note-taking appilcation. It currently allows task creation using "natural language processing" in many ways that Todoist (my previous task management tool) just doesn't allow.
 
 ![Automata](https://user-images.githubusercontent.com/101308963/157764569-9759686b-511e-4820-a5de-9087bf4a69cf.gif)
 
