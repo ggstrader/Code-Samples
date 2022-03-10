@@ -1,0 +1,585 @@
+.automata-view *,
+.automata-view *::before,
+.automata-view *::after {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.flow>*+* {
+    margin-top: var(--flow-space, 1em);
+}
+
+.b {
+    border: 1px dotted grey!important;
+}
+
+.automata-view__board {
+    --lane-max-width: 16em;
+    --lane-min-width: 12em;
+    font-size: medium;
+    width: 100%;
+    height: 90vh;
+}
+
+.automata-view__board,
+.automata-view__board>div {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-flow: row nowrap;
+    padding: .1rem;
+    max-height: 100%;
+}
+
+.automata-view__lane-wrapper {
+    flex-shrink: 1;
+    flex-basis: var(--lane-max-width);
+    min-width: var(--lane-min-width);
+    max-height: 100%;
+    overflow-y: scroll;
+    position: relative
+}
+
+.automata-view__lane-wrapper:not(:last-child) {
+    margin-right: 10px;
+}
+
+.automata-view__lane {
+    width: 100%;
+    flex-direction: column;
+    background-color: var(--background-secondary);
+    border-radius: 6px;
+    border: 1px solid var(--background-modifier-border);
+}
+
+.automata-view__lane-title {
+    font-weight: 600;
+    font-size: 0.875rem;
+    flex-grow: 1;
+    width: 100%;
+}
+
+.automata-view__lane-content {}
+
+.automata-view__card {
+    height: fit-content;
+    max-height: 9vh;
+    width: 100%;
+    background-color: var(--background-secondary-alt);
+    border: 1px solid;
+    margin: 0.4em 0;
+    overflow-y: scroll;
+}
+
+.automata-view__cardTitle {
+    text-align: right;
+}
+
+.automata-view__cardContents {}
+
+
+/* @import 'flatpickr/dist/flatpickr.css'; */
+
+
+/* @import 'flatpickr/dist/themes/dark.css'; */
+
+.flatpickr-calendar {
+    margin-top: -50px;
+}
+
+.suggestion {
+    min-width: 220px;
+}
+
+
+/* 
+.suggestion-container {
+    --default-font: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Microsoft YaHei Light", sans-serif;
+    --mermaid-font: var(--default-font);
+    --reveal-font: var(--default-font);
+    --accent-s: 100%;
+    --accent-l: 50%;
+    --accent-d: calc(var(--accent-l) + 2%);
+    --color-black-rgb: 0, 0, 0;
+    --color-white-rgb: 255, 255, 255;
+    --text: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    --text-editor: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    --font-monospace: Menlo, SFMono-Regular, Consolas, "Roboto Mono", monospace;
+    --rem: 18px;
+    --editor-line-height: 1.88889;
+    --editor-font-weight: 400;
+    --editor-font-features: "";
+    --scale-small: 90;
+    --font-normal: 16px;
+    --font-small: 14px;
+    --font-smaller: 11px;
+    --font-smallest: 10px;
+    --normal-weight: 400;
+    --bold-weight: 600;
+    --line-width: 42rem;
+    --line-height: 1.5;
+    --max-width: 100%;
+    --nested-padding: 3.5%;
+    --icon-muted: 0.4;
+    --border-width: 1px;
+    --border-width-alt: 1px;
+    --titlebar-height: 28px;
+    --header-width: 42px;
+    --radius-s: 4px;
+    --radius-m: 6px;
+    --radius-l: 10px;
+    --radius-xl: 20px;
+    --cursor: pointer;
+    --strong-weight: var(--bold-weight);
+    --strong-color: inherit;
+    --em-color: inherit;
+    --h1-size: 1.602em;
+    --h1-line-height: 1.4;
+    --h1-margin-top: 3;
+    --h1-margin-bottom: 1;
+    --h1-weight: 500;
+    --h1-style: normal;
+    --h2-size: 1.424em;
+    --h2-line-height: 1.4;
+    --h2-margin-top: 2.25;
+    --h2-margin-bottom: 0.5;
+    --h2-weight: 500;
+    --h2-style: normal;
+    --h3-size: 1.266em;
+    --h3-line-height: 1.4;
+    --h3-margin-top: 1.75;
+    --h3-margin-bottom: 0.5;
+    --h3-weight: 500;
+    --h3-style: normal;
+    --h4-size: 1.125em;
+    --h4-line-height: 1.5;
+    --h4-margin-top: 1.5;
+    --h4-margin-bottom: 0.5;
+    --h4-weight: 500;
+    --h4-style: normal;
+    --h5-size: 1em;
+    --h5-line-height: 1.5;
+    --h5-margin-top: 1.5;
+    --h5-margin-bottom: 0.5;
+    --h5-weight: 500;
+    --h5-style: normal;
+    --h6-size: 1em;
+    --h6-line-height: 1.5;
+    --h6-margin-top: 1.5;
+    --h6-margin-bottom: 0.5;
+    --h6-weight: 500;
+    --h6-style: italic;
+    --h1-color: var(--text-normal);
+    --h2-color: var(--text-normal);
+    --h3-color: var(--text-normal);
+    --h4-color: var(--text-normal);
+    --h5-color: var(--text-normal);
+    --layer-cover: 5;
+    --layer-sidedock: 10;
+    --layer-status-bar: 15;
+    --layer-popover: 30;
+    --layer-slides: 45;
+    --layer-modal: 50;
+    --layer-notice: 60;
+    --layer-menu: 65;
+    --layer-tooltip: 70;
+    --layer-dragged-item: 80;
+    text-rendering: optimizeLegibility;
+    color: var(--text-normal);
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    -webkit-user-select: none;
+    --editor-line-height-rem: calc(var(--editor-line-height) * 1rem);
+    --editor-line-height-small: calc(var(--editor-line-height) * var(--scale-small) / 100);
+    --editor-line-height-small-rem: calc(var(--editor-line-height-small) * 1rem);
+    font-size: var(--rem);
+    font-family: var(--text) !important;
+    font-weight: var(--normal-weight);
+    line-height: var(--line-height);
+    -webkit-font-smoothing: antialiased !important;
+    --text-preview: var(--text-editor);
+    --preview-font-size: var(--editor-font-size);
+    --preview-line-height: var(--editor-line-height);
+    --preview-line-height-rem: calc(var(--preview-line-height) * 1rem);
+    --preview-font-weight: var(--editor-font-weight);
+    --preview-font-features: var(--editor-font-features);
+    --cell-size: 2.4em;
+    --background-modifier-form-field: rgba(0, 0, 0, 0.3);
+    --background-modifier-form-field-highlighted: rgba(0, 0, 0, 0.22);
+    --background-modifier-success: #197300;
+    --background-modifier-error: #3d0000;
+    --background-modifier-error-rgb: 61, 0, 0;
+    --background-modifier-error-hover: #470000;
+    --text-muted-rgb: 153, 153, 153;
+    --text-error: #ff3333;
+    --text-error-hover: #990000;
+    --interactive-normal: #2a2a2a;
+    --interactive-hover: #303030;
+    --interactive-success: #197300;
+    --scrollbar-active-thumb-bg: rgba(255, 255, 255, 0.2);
+    --scrollbar-bg: rgba(255, 255, 255, 0.05);
+    --scrollbar-thumb-bg: rgba(255, 255, 255, 0.1);
+    --highlight-mix-blend-mode: lighten;
+    --accent-h: 210;
+    --red-rgb: 255, 69, 58;
+    --orange-rgb: 255, 159, 10;
+    --yellow-rgb: 255, 214, 10;
+    --green-rgb: 50, 215, 75;
+    --teal-rgb: 100, 210, 255;
+    --blue-rgb: 10, 132, 255;
+    --indigo-rgb: 94, 92, 230;
+    --purple-rgb: 191, 90, 242;
+    --pink-rgb: 255, 45, 85;
+    --accent-hsl: var(--accent-h), var(--accent-s), var(--accent-d);
+    --foreground-rgb: 204, 204, 204;
+    --background-rgb: 30, 30, 30;
+    --shade-90: rgba(var(--foreground-rgb), 0.9);
+    --shade-80: rgba(var(--foreground-rgb), 0.8);
+    --shade-70: rgba(var(--foreground-rgb), 0.7);
+    --shade-60: rgba(var(--foreground-rgb), 0.6);
+    --shade-50: rgba(var(--foreground-rgb), 0.5);
+    --shade-40: rgba(var(--foreground-rgb), 0.4);
+    --shade-30: rgba(var(--foreground-rgb), 0.3);
+    --shade-20: rgba(var(--foreground-rgb), 0.2);
+    --shade-10: rgba(var(--foreground-rgb), 0.1);
+    --shade-5: rgba(var(--foreground-rgb), 0.05);
+    --shade-3: rgba(var(--foreground-rgb), 0.03);
+    --shade-2: rgba(var(--foreground-rgb), 0.02);
+    --shade-0: rgb(var(--background-rgb));
+    --shade-plus-darker: rgba(255, 255, 255, 0.15);
+    --shade-plus-darker-hsl: hsl(0, 0%, 16%);
+    --dark-separator: hsl(0, 0%, 9%);
+    --background-primary: var(--shade-0);
+    --background-primary-alt: var(--shade-3);
+    --background-secondary: var(--shade-3);
+    --background-secondary-alt: var(--shade-3);
+    --background-tertiary: var(--shade-3);
+    --background-modifier-border: var(--shade-plus-darker);
+    --background-modifier-border-hover: var(--shade-plus-darker);
+    --background-modifier-border-focus: var(--shade-plus-darker);
+    --background-modifier-box-shadow: rgba(0, 0, 0, 0.3);
+    --text-normal: var(--shade-90);
+    --text-muted: var(--shade-50);
+    --text-faint: var(--shade-30);
+    --background-transparent: transparent;
+    --background-translucent: rgba(40, 40, 40, 0.6);
+    --background-match-highlight: hsla(var(--accent-hsl), 0.2);
+    --background-modifier-accent: hsl( var(--accent-h), var(--accent-s), calc(var(--accent-d) - 10%));
+    --text-accent: hsl(var(--accent-hsl));
+    --text-accent-hover: hsl( var(--accent-h), var(--accent-s), calc(var(--accent-d) + 12%));
+    --text-on-accent: white;
+    --icon-hex: FFF;
+    --interactive-accent: hsl(var(--accent-hsl));
+    --interactive-accent-hover: hsl( var(--accent-h), var(--accent-s), calc(var(--accent-d) - 15%));
+    --quote-opening-modifier: var(--shade-70);
+    --interactive-accent-rgb: var(--shade-70);
+    --text-selection: hsl(var(--accent-h), calc(var(--accent-s) - 50%), 20%);
+    --text-highlight-bg: rgba(255, 177, 80, 0.3);
+    --text-highlight-bg-active: rgba(255, 255, 255, 0.1);
+    --background-modifier-cover: rgba(20, 20, 20, 0.6);
+    --opacity-translucency: 1;
+    --editor-font-size: 15px;
+    box-sizing: border-box;
+    position: absolute;
+    background-color: var(--background-primary);
+    max-width: 500px;
+    border-radius: 4px;
+    z-index: var(--layer-notice);
+    box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.2);
+    border: none;
+    left: 356.969px;
+    top: 1034.19px;
+} */
+
+
+/* the following copied from Kanban */
+
+
+/* 
+
+.flatpickr-input {
+    width: 0;
+    height: 0;
+    opacity: 0;
+    border: none;
+    padding: 0;
+    display: block;
+    margin-bottom: -1px;
+}
+
+.flatpickr-current-month {
+    color: var(--text-normal);
+    font-weight: 600;
+    font-size: inherit;
+    width: 100%;
+    position: static;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.flatpickr-current-month .numInputWrapper span.arrowUp:after {
+    border-bottom-color: var(--text-normal);
+}
+
+.flatpickr-current-month .numInputWrapper span.arrowDown:after {
+    border-top-color: var(--text-normal);
+}
+
+.flatpickr-months .flatpickr-prev-month svg path,
+.flatpickr-months .flatpickr-next-month svg path {
+    fill: currentColor;
+}
+
+.flatpickr-calendar {
+    font-size: 13px;
+    overflow: hidden;
+    background-color: var(--background-primary);
+    width: calc(var(--cell-size) * 7 + 8px);
+    box-shadow: 0 0 0 1px var(--background-modifier-border), 0px 15px 25px rgba(0, 0, 0, 0.2);
+}
+
+.flatpickr-months {
+    font-size: 13px;
+    padding: 2px 2px 4px;
+    align-items: center;
+}
+
+.flatpickr-months .flatpickr-current-month input.cur-year,
+.flatpickr-months select {
+    border-radius: 4px;
+    padding: 4px;
+}
+
+.flatpickr-months .numInputWrapper {
+    border-radius: 4px;
+}
+
+.flatpickr-months .flatpickr-month {
+    width: 100%;
+    height: auto;
+}
+
+.flatpickr-months .flatpickr-prev-month,
+.flatpickr-months .flatpickr-next-month {
+    color: var(--text-normal);
+    fill: currentColor;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    height: auto;
+    padding: 5px;
+    position: static;
+    flex-shrink: 0;
+}
+
+.flatpickr-months .flatpickr-prev-month:hover,
+.flatpickr-months .flatpickr-next-month:hover {
+    background-color: var(--background-primary-alt);
+    color: var(--text-normal);
+}
+
+.flatpickr-months .flatpickr-prev-month:hover svg,
+.flatpickr-months .flatpickr-next-month:hover svg {
+    fill: currentColor;
+}
+
+.flatpickr-current-month .flatpickr-monthDropdown-months {
+    color: var(--text-normal);
+    font-weight: inherit;
+    margin-right: 5px;
+}
+
+.flatpickr-current-month input.cur-year {
+    color: var(--text-normal);
+    font-weight: inherit;
+}
+
+.flatpickr-weekdays {
+    height: auto;
+    padding: 8px 0 12px;
+}
+
+span.flatpickr-weekday {
+    font-weight: 400;
+    color: var(--text-muted);
+}
+
+.flatpickr-innerContainer {
+    padding: 4px;
+}
+
+.flatpickr-day {
+    color: var(--text-normal);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--cell-size);
+    height: var(--cell-size);
+    line-height: 1;
+    border-radius: 6px;
+}
+
+.flatpickr-day.today {
+    border-color: var(--interactive-accent);
+}
+
+.flatpickr-day.today:hover {
+    color: var(--text-normal);
+    border-color: var(--interactive-accent);
+    background-color: var(--background-primary-alt);
+}
+
+.flatpickr-day.selected {
+    border-color: var(--interactive-accent);
+    background-color: var(--interactive-accent);
+    color: var(--text-on-accent);
+}
+
+.flatpickr-day.selected:hover {
+    border-color: var(--interactive-accent);
+    background-color: var(--interactive-accent);
+}
+
+.flatpickr-days {
+    width: calc(var(--cell-size) * 7);
+}
+
+.dayContainer {
+    width: calc(var(--cell-size) * 7);
+    min-width: calc(var(--cell-size) * 7);
+    max-width: calc(var(--cell-size) * 7);
+}
+
+.flatpickr-day.inRange,
+.flatpickr-day.prevMonthDay.inRange,
+.flatpickr-day.nextMonthDay.inRange,
+.flatpickr-day.today.inRange,
+.flatpickr-day.prevMonthDay.today.inRange,
+.flatpickr-day.nextMonthDay.today.inRange,
+.flatpickr-day:hover,
+.flatpickr-day.prevMonthDay:hover,
+.flatpickr-day.nextMonthDay:hover,
+.flatpickr-day:focus,
+.flatpickr-day.prevMonthDay:focus,
+.flatpickr-day.nextMonthDay:focus {
+    background-color: var(--background-primary-alt);
+    border-color: var(--background-primary-alt);
+}
+
+.flatpickr-day.flatpickr-disabled,
+.flatpickr-day.flatpickr-disabled:hover,
+.flatpickr-day.prevMonthDay,
+.flatpickr-day.nextMonthDay,
+.flatpickr-day.notAllowed,
+.flatpickr-day.notAllowed.prevMonthDay,
+.flatpickr-day.notAllowed.nextMonthDay {
+    color: var(--text-faint);
+} */
+
+
+/* the following is from https://www.youtube.com/watch?v=mcaYol_XFk4
+likely not going to be used, keeping for now  */
+
+
+/* :root {
+    --h: 220;
+    --s: 80%;
+    --l: 50%;
+    --a: 100%;
+    --primary: hsl(var(--h), var(--s), calc(var(--l) * 0.5), 100%);
+    --secondary: hsl(var(--h), var(--s), var(--l), 100%);
+    --accent: hsl(calc(var(--h) - 175), var(--s), var(--l), 100%);
+    --black: hsl(var(--h), var(--s), calc(var(--l) * 0.05), var(--a));
+    --white: hsl(var(--h), var(--s), 100%, var(--a));
+    --error: hsl(0, 87%, 60%, var(--a));
+    --success: hsl(132, 49%, 35%, var(--a));
+    --outline: 0 0 0 2px var(--black);
+    --shadow: 8px 8px 0 var(--black);
+    sizing
+    --xs: 0.25rem;
+    --sm: 0.5rem;
+    --base: 1rem;
+    --md: 1.25rem;
+    --lg: 1.5rem;
+    --xxl: 2rem;
+    --xxxl: 3rem;
+    --full: 100%;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+} */
+
+
+/* body {
+    background: var(--primary);
+    color: var(--white);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+} */
+
+
+/* input {
+    width: 100%;
+    padding: var(--xs);
+    letter-spacing: 1.2px;
+    transition: var(--transition);
+    background: transparent;
+    color: inherit;
+    text-transform: uppercase;
+    font-size: inherit;
+    border: none;
+    outline: none;
+}
+
+input::placeholder {
+    color: inherit;
+    for firefox
+    opacity: 0.8;
+}
+
+input:focus,
+button:focus {
+    outline: none;
+    box-shadow: var(--outline);
+    border-radius: var(--xs);
+}
+
+button {
+    outline: none;
+    border: none;
+    cursor: pointer;
+    background: var(--success);
+    color: var(--white);
+    padding: var(--sm);
+    border-radius: var(--xs);
+    box-shadow: var(--shadow);
+    font-size: clamp(var(--base), 1.5vw, var(--md));
+    font-weight: bold;
+    transition: var(--transition);
+} */
+
+
+/* button:hover {
+    --shadow: 4px 4px 0 var(--black);
+    box-shadow: var(--shadow), var(--outline);
+    filter: brightness(1.1);
+} */
+
+
+/* 
+button:active {
+    position: relative;
+    top: 1px;
+    box-shadow: var(--outline);
+} */
+
+
+/* .text-center {
+    text-align: center;
+} */
+
+
+/* body {
+    --cell-size: 2.4em;
+} */
