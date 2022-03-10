@@ -1,19 +1,19 @@
 ## Relevent Files for Allocator:
- - mm.c
+ - [mm.c](https://github.com/ggstrader/Code-Samples/blob/main/Computer%20Systems/Allocator%20(malloc%2Bfree)/mm.c)
 
 *Demonstrates:*
 Understanding of space and time constraints of memory allocation.
 Features include bit packing, ghost footer blocks, the option for first/best-fit, and a doubly-linked free list
 
 ## Relevent Files for Performance Tuning:
- - kernels.c
+ - [kernels.c](https://github.com/ggstrader/Code-Samples/blob/main/Computer%20Systems/Performance%20Tuning/kernels.c)
 
 *Demonstrates:* 
 Understanding of common performance optimization techniques like:
     loop unrolling, vectorization, temporal/spatial locality, etc.
 
 ## Relevent Files for Process Management:
- - run_tournament.c
+ - [run_tournament.c](https://github.com/ggstrader/Code-Samples/blob/main/Computer%20Systems/Process%20Management/run_tournament.c)
 
 *Demonstrates:* 
 Understanding of process managment and signals in Linux.
