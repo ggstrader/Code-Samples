@@ -14,6 +14,7 @@ Automata supports much that Todoist can't handle, like exclusions and holidays, 
 - "do something @every 5,3 wed,fri starting yesterday until next october excluding next wed,fri"
 - "do something @Every mothers day until 2050AD beginning about 20 years back except every other mothers day starting next year until 2030AD"
 - "do something @Every Halloween Ending july 4th 2054 Starting around 5 [[halloweens]] back (at about 5pm) except every other Halloween" (Obsidian uses [[to link to other notes]] so that just demonstrates that automata ignores links)
+- more in [examples](https://github.com/ggstrader/Code-Samples/blob/main/Automata/src/Scheduling/examples.ts)
 
 As shown, when typeing a recurrance/date Automata shows a popup calendar to validate what days it will happen on. A user can also manually select dates in this popup rather than explicitely including them in text. The preview is scrollable, so you can see years and decades in advance (if you really like planning ahead).
 
